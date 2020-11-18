@@ -8,6 +8,7 @@ def attn_head(seq, out_sz, bias_mat, activation, in_drop=0.0, coef_drop=0.0, res
         if in_drop != 0.0:
             seq = tf.nn.dropout(seq, 1.0 - in_drop)
 
+        # see more explanations for this operation on https://github.com/PetarV-/GAT/issues/15
         seq_fts = tf.layers.conv1d(seq, out_sz, 1, use_bias=False)
 
         # simplest self-attention possible
